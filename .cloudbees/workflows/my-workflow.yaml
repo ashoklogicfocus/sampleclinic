@@ -15,7 +15,7 @@ jobs:
         with:
           url: http://192.168.1.75:8081/job/DevOps
           username: logicfocus
-          token: 11809194f799eaf55f6d66844bb7f59e43
+          token: ${{ secrets.CBCI_TOKEN }}
           job-name: sampleclinic
           test-type: JUnit
           test-result-location: testReport
