@@ -13,7 +13,7 @@ jobs:
       - name: Run a CloudBees CI job
         uses: cloudbees-io/cbci-run-job@v2
         with:
-          url: http://192.168.1.75:8081/job/DevOps
+          url: http://103.99.149.57:8080/job/DevOps
           username: logicfocus
           token: ${{ secrets.CBCI_TOKEN }}
           job-name: sampleclinic
