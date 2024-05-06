@@ -1,21 +1,24 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
-name: My workflow
+name: SelfTest
 
 on:
   push:
     branches:
-      - '**'
+      - "*"
 
 jobs:
-  my-cbci-job:
+
+  build:
+    if: cloudbees.api.url == 'https://api.saas-preprod.beescloud.com' || cloudbees.api.url == 'https://api.cloudbees.io'
+    permissions:
+      scm-token-own: read
+      id-token: write
     steps:
-      - name: Run a CloudBees CI job
-        uses: cloudbees-io/cbci-run-job@v2
-        with:
-          url: http://103.99.149.57:8080/job/DevOps
-          username: logicfocus
-          token: ${{ secrets.CBCI_TOKEN }}
-          job-name: sampleclinic
-          test-type: JUnit
-          test-result-location: testReport
+      - name: Git checkout
+        uses: https://github.com/cloudbees-io/checkout@v1
+
+      - name: Maven build
+        uses: docker://maven:3.8.5
+        run: |
+          ./mvnw package
