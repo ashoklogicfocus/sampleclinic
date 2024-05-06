@@ -18,4 +18,4 @@ jobs:
           token: 11809194f799eaf55f6d66844bb7f59e43
           job-name: sampleclinic
           test-type: JUnit
-          test-result-location: junit-service*
+          test-result-location: testReport
